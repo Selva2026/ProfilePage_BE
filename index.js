@@ -10,18 +10,24 @@ dotenv.config();
 connectDB();
 
 const app = express();
+
+// Middleware
 app.use(cors());
 app.use(express.json());
 
+// Routes
 app.use("/api/auth", authRoutes);
 
-app.get("/", (req,res)=>{
-res.status(201).send("Go to https://profilepageiit.netlify.app/");
-})
+// Health check / root route
+app.get("/", (req, res) => {
+  res.status(200).send("Go to https://profilepageiit.netlify.app/");
+});
+
+// Global error handler (must be last)
 app.use(errorHandler);
 
-app.listen(process.env.PORT, () =>
-  console.log(`🚀 Server running on ${process.env.PORT}`)
-);
-
-
+// Server
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on PORT ${PORT}`);
+});
