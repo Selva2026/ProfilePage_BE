@@ -1,7 +1,7 @@
 import { createClient } from "redis";
 
 const redisClient = createClient({
-  url: process.env.UPSTASH_REDIS_URL
+  url: process.env.UPSTASH_REDIS_REST_URL
 });
 
 redisClient.on("connect", () =>
@@ -15,3 +15,4 @@ redisClient.on("error", (err) =>
 await redisClient.connect();
 
 export default redisClient;
+
