@@ -14,8 +14,13 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/auth", authRoutes);
+
+app.get("/", (req,res)=>{
+res.(201).send("Go to https://profilepageiit.netlify.app/");
+})
 app.use(errorHandler);
 
 app.listen(process.env.PORT, () =>
   console.log(`🚀 Server running on ${process.env.PORT}`)
 );
+
